@@ -1,0 +1,82 @@
+{% extends "../index.html" %}
+
+{% block body %}
+<nav class="transbox">
+<nav>
+    <div class="nav-wrapper z-depth-2 blue lighten-1">
+        <a href="#!" class="brand-logo">Transacciones</a>
+        <ul class="right hide-on-med-and-down">
+            <!--<li><a href="transaccion?numero={{numero}}"><i class="material-icons left">playlist_add</i>Nueva Transaccion</a></li>-->
+        </ul>
+    </div>
+
+</nav>
+<div class="row">
+    <div class="col s12">
+        <div class="card z-depth-5 blue lighten-2">
+            <div class="card-content">
+
+                <span class="card-title">{{title}}</span>
+
+                <table class="highlight responsive-table">
+                    <thead class="blue lighten-3">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Descripcion</th>
+                            <th>Cuenta</th>
+                        </tr>
+                    </thead>
+                    <tbody class="blue lighten-4">
+                        {% for item in lista %}
+                        <tr>
+
+                            <td>{{item.fecha}}</td>
+                            <td>{{item.tipo}}</td>
+                            <td>{{item.valor}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.cuenta}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                <nav>
+                    <div class="nav-wrapper  blue lighten-2">
+                        <ul class="right hide-on-med-and-down">
+                            <li><a class="btn-floating disable black pulse"href="transaccion?numero={{numero}}"><i class="material-icons left">add</i></a></li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</nav>
+
+{% endblock %}
+{% block js %}
+<script>
+    var eliminar = function(id){
+        $.ajax({
+            url: "eliminar",
+            method: "POST",
+            data: { id : id }
+        }).success(function( msj ) {
+            if(msj == "eliminado"){
+
+            }
+            if(msj == "no eliminado"){
+
+            }
+            if(msj == "perdido"){
+
+            }
+        });
+    }
+</script>
+{% endblock %}

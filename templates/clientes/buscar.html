@@ -1,0 +1,49 @@
+{% extends "../index.html" %}
+
+{% block body %}
+<nav class="transbox">
+
+<nav>
+    <div class="nav-wrapper z-depth-2 blue lighten-1">
+        <a href="#!" class="brand-logo">Cuentas</a>
+        <ul class="right hide-on-med-and-down">
+          <!--  <li><a href="crearCuenta"><i class="material-icons left">playlist_add</i>Nuevo</a></li> -->
+        </ul>
+    </div>
+</nav>
+
+<table style="width: 30%">
+            <th ><input class=" grey darken-3"onchange="recibir()" id="txt_buscar" type="text" style="width: 200px; color: white; border: solid" placeholder="Ingrese numero de cedula" value=""></th>
+            <th ><a class="grey darken-3" id="boton_buscar" style="width: 50px; height: 50px; font-size: 25px" class="btn btn-success"><i class="material-icons left">search</i></a></th>
+
+        </table>
+        <script>
+            function recibir() {
+                var valor = document.getElementById("txt_buscar").value;
+                document.getElementById("boton_buscar").href = 'transferencia?txt_buscar='+valor+'&numero={{ cliente }}';
+            }
+        </script>
+
+
+{% endblock %}
+{% block js %}
+<script>
+    var eliminar = function(id){
+        $.ajax({
+            url: "eliminar",
+            method: "POST",
+            data: { id : id }
+        }).success(function( msj ) {
+            if(msj == "eliminado"){
+
+            }
+            if(msj == "no eliminado"){
+
+            }
+            if(msj == "perdido"){
+
+            }
+        });
+    }
+</script>
+{% endblock %}
